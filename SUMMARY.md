@@ -15,6 +15,6 @@
 * Cookbooks
   * [Criando APIs](cookbooks/criando-apis.md)
 * Estilos
-  * [Configuração base de estilo][styles/estilo-base.md]
+  * [Configuração base de estilo](styles/estilo-base.md)
   * [JavaScript](styles/estilo-js.md)
   * [Ruby](styles/estilo-ruby.md)
