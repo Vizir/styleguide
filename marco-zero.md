@@ -32,8 +32,3 @@ Se você está na Vizir, provavelmente passou pelo nosso processo seletivo (sim,
 * Saiba respeitar as diferenças. Na Vizir a diferença sempre foi bem-vinda, e está mais que provado em vários ramos, que a diversidade traz inovação e bons resultados as empresas e pessoas;
 * Seja um guardião da saúde e efiência da equipe, seja durante as retrospectivas ou no próprio dia-a-dia. Lembre-se que o entregue é sempre melhor que o perfeito, porém, o entregue de hoje, é bom ser melhor do que o de ontem;
 * Aceite falhas, programar é um esforço grande cognitivo e assim, fadado ao erro, então use eles para melhorar, e não para te deixar pra baixo.
-
-#### Boas práticas de codificação
-
-* Ao longo do projeto sempre atualize as libs, pois desta forma você ganha várias novas funcionalidades, e inclusive sempre leia o changelog/releases, e também torna o processo de atualização menos impactante para a velocidade do projeto;
-* Ao encerrar o projeto, "congele" as versõe s das libs, para evitar problemas futuros por atualização de versão. Assim, caso alguém queira atualizar alguma dependência no futuro, ela terá que realmente atualizar no package.json e testar a aplicação;
