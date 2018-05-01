@@ -9,9 +9,9 @@
 * [Testes](testes.md)
 * [Segurança](seguranca.md)
 * Caminhos
-  * [Front-End](front-end.md)
-  * [Teste de Software](teste-de-software.md)
-  * [UX](ux.md)
+  * [Front-End](paths/front-end.md)
+  * [Teste de Software](paths/teste-de-software.md)
+  * [UX](paths/ux.md)
 * Cookbooks
   * [Criando APIs](cookbooks/criando-apis.md)
 * Estilos
