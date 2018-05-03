@@ -1,1 +1,1 @@
-## Caminho UX (em desenvolvimemnto...)
+## Caminho UX (em desenvolvimento...)
