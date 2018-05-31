@@ -115,7 +115,6 @@ Dado que uma branch <nome_da_branch> está atrás da `master`, você pode seguir
 
  ## Referências
 
- * [Gitflow Workflow by Vicent Driessen](http://nvie.com/posts/a-successful-git-branching-model/)
- * [GitFlow Workflow by Atlassian](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+ * [Still using GitFlow? What about a simpler alternative?](https://hackernoon.com/still-using-gitflow-what-about-a-simpler-alternative-74aa9a46b9a3)
  * [Karma Commit Messages](http://karma-runner.github.io/1.0/dev/git-commit-msg.html)
  * [Semantic Versioning](https://semver.org/)
