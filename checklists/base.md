@@ -11,9 +11,9 @@ A ideia do checklist abaixo, é auxiliar diferentes momentos do desenvolvimento,
 
 * Definir um padrão para o fluxo do git em todos os projetos.(pelo menos os novos)
 * Antes de fazer o PR/commit, analisar o código gerado com `git diff` e olhar por possíveis erros e melhorias que podem ser feitas
-* Gerar commits pequenos que facilitam o entedimento do que foi feito
+* Gerar commits pequenos que facilitam o entendimento do que foi feito
   * `git add --patch`
-* Dividir os commits em escopo de responsabilidades. As vezes rola de fazer um unico commit e colocar na mensagem que fez X e Y. Nesse caso, melhor fazer dois commits separados, um para X e outro para Y. Se precisar reverter, fazer cherry pick de somente uma parte, facilita bastante
+* Dividir os commits em escopo de responsabilidades. Às vezes rola de fazer um único commit e colocar na mensagem que fez X e Y. Nesse caso, melhor fazer dois commits separados, um para X e outro para Y. Se precisar reverter, fazer cherry pick de somente uma parte, facilita bastante
 * Enviar para o master sempre com `no-ff`
 
 ### Práticas de codificação
