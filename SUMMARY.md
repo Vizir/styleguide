@@ -12,6 +12,8 @@
   * [Front-End](paths/front-end.md)
   * [Teste de Software](paths/teste-de-software.md)
   * [UX](paths/ux.md)
+* Checklists
+  * [Base](checklists/base.md)
 * Cookbooks
   * [Criando APIs](cookbooks/criando-apis.md)
 * Estilos
