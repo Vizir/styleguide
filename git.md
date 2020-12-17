@@ -28,23 +28,41 @@ Com base nele, o fluxo de desenvolvimento de uma nova funcionalidade seguiria os
 Agora em caso de hot-fix para produção. O fluxo seria o seguinte:
 
 1. Dev: faz o checkout da versão de produção, utilizando tag git checkout v0.12.2
-2. Dev: cria uma nova branch a partir da tag git checkout -b hotfix-v0.12.3-[Identificador do card no Trello]
+2. Dev: cria uma nova branch a partir da tag git checkout -b hotfix-v0.12.3-[Identificador do card no issue tracker]
 3. Dev: faz o commit da fix
 4. Dev: gera builds da hotfix conforme necessidade (ambiente de integração do dev)
-5. Dev: faz o push da branch para o remote: git push -u origin hotfix-v0.12.3-[Identificador do card no Trello]
+5. Dev: faz o push da branch para o remote: git push -u origin hotfix-v0.12.3-[Identificador do card no issue tracker]
 6. Dev: gera o build da branch de hotfix para o ambiente de homologação
 7. Dev: uma vez validado o hotfix, o dev gera uma tag baseado na hotfix, seguindo o padrão SEMVER, e faz o push para o Bitbucket git push --tags
 8. Dev: promove a tag para produção através do Jenkins
 9. Dev: uma vez o hotfix aplicado e validado em prod, faz o PR para a master e a partir daqui segue o mesmo fluxo de uma feature (continuando do passo 5)
 
 ## Definições de nomenclatura
-Os nomes dos branches criados devem seguir o seguinte padrão de nomenclatura:
+
+### Branches
+Os nomes dos branches criados devem seguir o seguinte padrão de nomenclatura.
+
+Se **houver** um card criado no issue tracker do projeto, deve-se utilizar o card id:
 
 ```
-tipo/TRELLO-CARD-ID
+tipo/CARD-ID
 ```
 
-Onde o tipo deve se relacionar ao que aquela branch busca resolver, por exemplo, se será desenvolvida uma funcionalidade nova, se será implementada uma correção, etc.
+Exemplos:
+- feat/VB-1
+- fix/SG-2
+
+Se NÃO houver um card no issue tracker, deve-se utilizar o escopo da mudança:
+
+```
+tipo/ESCOPO
+```
+
+Exemplos:
+- feat/add-logs
+- fix/input-mask
+
+O **tipo** deve-se relacionar ao que aquela branch busca resolver, por exemplo, se será desenvolvida uma funcionalidade nova, se será implementada uma correção, etc.
 
 Alguns tipos possíveis são os seguintes:
 
@@ -55,29 +73,20 @@ Alguns tipos possíveis são os seguintes:
 * test (será desenvolvido algum novo cenário de teste para a aplicação)
 * docs (será feita alguma mudança na documentação)
 
-Já no TRELLO-CARD-ID deve ser descrito o id do card para aquela história no JIRA do projeto.
-
-Exemplos:
-
-* feat/BOARD-1 - Nessa branch fica claro que está sendo desenvolvida uma nova funcionalidade e que ela se refere a história BOARD-1
-* fix/BOARD-2 - Nessa branch também fica claro que está sendo realizada uma correção no que se refere a história BOARD-2
-
 ### Mensagens de commit
-Para as mensagens de commit também deve-se seguir o seguinte esquema de nomenclatura:
+Para as mensagens de commit deve-se seguir o seguinte esquema de nomenclatura:
 
 ```
-tipo(TRELLO-CARD-ID): mensagem
+tipo(ESCOPO): mensagem
 ```
 
-Aqui, o tipo e o TRELLO-CARD-ID devem se referir a branch que está sendo utilizada para o desenvolvimento. Já a mensagem deve descrever brevemente o conteúdo daquela alteração.
-
-A vantagem de manter o tipo e o TRELLO-CARD-ID na mensagem de commit é que após realizado o merge a informação da origem daquela modificação fica explicíta e facilita muito a identificação e investigação de possíveis erros no código.
+Aqui, o tipo e o ESCOPO devem se referir à branch que está sendo utilizada para o desenvolvimento. Já a mensagem deve descrever brevemente o conteúdo daquela alteração.
 
 ### Mensagens de commit com descrição longa
 Para as mensagens de commit que necessitarem de uma descrição mais detalhada do que foi implementado, recomendamos o seguinte padrão:
 
 ```
-tipo(TRELLO-CARD-ID): resumo da mensagem
+tipo(ESCOPO): resumo da mensagem
 
 A mensagem detalhada da implementação.
 ```
@@ -111,6 +120,29 @@ Dado que uma branch <nome_da_branch> está atrás da `master`, você pode seguir
  7. Se conflitos aparecerem, resolva eles e então adicione as resoluções (`git add <arquivo-arrumado>`), e após resolver todos os conflitos continue o rebase (`git rebase --continue`)
  8. Após o rebase você agora precisa atualizar a sua branch remota: `git push -f` (sim `-f`, porquê após o rebase os seus commits tiveram seus hashes atualizados)
  9. Agora você pode finalmente criar o Pull Request (PR) e pegar um pouco de café.
+
+## Breaking Changes
+Ao trabalhar com bibliotecas, mudanças de código podem alterar as interfaces utilizadas por terceiros. Essas atualizações devem ser acompanhadas por um incremento de versão da biblioteca e da versão de dependência nas aplicações que usem esse lib.
+
+No git, é importante sinalizar essas BREAKING CHANGES em 3 lugares:
+1. Nos commits que possam causar breaking changes
+    - Exemplo:
+    ```
+    Commit message: refactor(input): use props for state management
+    Commit description: *BREAKING CHANGE*: input behavior now must be implemented by the peer, including value and handleChange
+    ```
+2. No `CHANGELOG.md` do projeto
+    - Exemplo:
+    ```
+    - *BREAKING CHANGE*: Update input to use props for state management. Input behavior now must be implemented by the peer, including value and handleChange
+    ```
+3. No pull request da história trabalhada
+    - Exemplo:
+    ```
+    (...Descrição)
+
+    *BREAKING CHANGE*: Update input to use props for state management. Input behavior now must be implemented by the peer, including value and handleChange
+    ```
 
 
  ## Referências
