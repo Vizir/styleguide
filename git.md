@@ -68,7 +68,7 @@ Alguns tipos possíveis são os seguintes:
 
 * feat (será implementada uma nova funcionalidade)
 * fix (será implementada uma correção para resolver um problema existente)
-* refact (será realizado algum refactor em parte do código que já funciona)
+* refactor (será realizado algum refactor em parte do código que já funciona)
 * chore (será implementa alguma melhoria de código e/ou infraestrutura)
 * test (será desenvolvido algum novo cenário de teste para a aplicação)
 * docs (será feita alguma mudança na documentação)
@@ -128,7 +128,7 @@ No git, é importante sinalizar essas BREAKING CHANGES em 3 lugares:
 1. Nos commits que possam causar breaking changes
     - Exemplo:
     ```
-    Commit message: refact(input): use props for state management
+    Commit message: refactor(input): use props for state management
     Commit description: *BREAKING CHANGE*: input behavior now must be implemented by the peer, including value and handleChange
     ```
 2. No `CHANGELOG.md` do projeto
