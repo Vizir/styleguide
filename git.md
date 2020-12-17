@@ -121,6 +121,29 @@ Dado que uma branch <nome_da_branch> está atrás da `master`, você pode seguir
  8. Após o rebase você agora precisa atualizar a sua branch remota: `git push -f` (sim `-f`, porquê após o rebase os seus commits tiveram seus hashes atualizados)
  9. Agora você pode finalmente criar o Pull Request (PR) e pegar um pouco de café.
 
+## Breaking Changes
+Ao trabalhar com bibliotecas, mudanças de código podem alterar as interfaces utilizadas por terceiros. Essas atualizações devem ser acompanhadas por um incremento de versão da biblioteca e da versão de dependência nas aplicações que usem esse lib.
+
+No git, é importante sinalizar essas BREAKING CHANGES em 3 lugares:
+1. Nos commits que possam causar breaking changes
+    - Exemplo:
+    ```
+    Commit message: refact(input): use props for state management
+    Commit description: *BREAKING CHANGE*: input behavior now must be implemented by the peer, including value and handleChange
+    ```
+2. No `CHANGELOG.md` do projeto
+    - Exemplo:
+    ```
+    - *BREAKING CHANGE*: Update input to use props for state management. Input behavior now must be implemented by the peer, including value and handleChange
+    ```
+3. No pull request da história trabalhada
+    - Exemplo:
+    ```
+    (...Descrição)
+
+    *BREAKING CHANGE*: Update input to use props for state management. Input behavior now must be implemented by the peer, including value and handleChange
+    ```
+
 
  ## Referências
 
