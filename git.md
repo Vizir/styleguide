@@ -5,36 +5,36 @@
 O fluxo recomendado é um simples modelo de feature branch, com as seguintes características:
 
 1. O master sempre está num estado deployable, ou seja, pode ir para produção
-2. Todas as mudanças são feitas através de pull requests + merge, por meio da crianção de features branches. Os commits direto na master estão desabilitados
+2. Todas as mudanças são feitas através de pull requests + merge, por meio da criação de features branches. Os commits direto na master estão desabilitados
 3. Para resolver conflitos e atualizar com a master, use rebase na sua feature branch
 
 ![](assets/images/git/feature-branches.svg)
 
-Com base nele, o fluxo de desenvolvimento de uma nova funcionalidade seguiria os seguintes passos:
+Com base no modelo, o fluxo de desenvolvimento de uma nova funcionalidade segue os seguintes passos:
 
 1. Dev: cria uma nova branch feat/[nome da feature]
-2. Dev: durante o desenvolvimento ira realizar commits na branch criada
+2. Dev: durante o desenvolvimento realiza commits na branch criada
 3. Dev: gera builds da feature branch conforme necessidade (ambiente de integração do dev)
-4. Dev: ao término do desenvolvimento da feat, irá fazer git rebase master, para atualizar com o estado mais atual da branch de master, e assim já resolver possíveis conflitos
-5. Dev: ira fazer o push da branch e criar um PR no Bitbucket para a branch master, colocando como reviewers a equipe de QA
-6. Time: irá analisar o código, e uma vez que não sejam encontrados problemas, irá aprovar
-7. Dev: após o PR aprovado, irá fazer o merge via interface do Bitbucket
-8. Jenkins: gera o build da master para o ambiente de homologação
-9. Dev: gera uma tag baseado na master, seguindo o padrão SEMVER, e faz o push para o Bitbucket git push --tags
-10. Dev: promove a tag para produção através do Jenkins
+4. Dev: ao término do desenvolvimento da feat, irá fazer git rebase master, para atualizar com o estado atual da branch de master, e resolver possíveis conflitos
+5. Dev: faz o push da branch e cria um PR no repositório para a branch master, colocando as pessoas da equipe como reviewers
+6. Equipe: analisa o código, e uma vez que não sejam encontrados problemas, aprova o PR
+7. Dev: após o PR aprovado, faz o merge via interface do repositório
+8. Ferramenta de build automatizado: gera o build da master para o ambiente de homologação
+9. Dev: gera uma tag baseado na master, seguindo o padrão SEMVER, e faz o push para o repositório `git push --tags`
+10. Dev: promove a tag para produção através da ferramenta de deploy
 
 ![](assets/images/git/hotfix-branches.svg)
 
 Agora em caso de hot-fix para produção. O fluxo seria o seguinte:
 
-1. Dev: faz o checkout da versão de produção, utilizando tag git checkout v0.12.2
-2. Dev: cria uma nova branch a partir da tag git checkout -b hotfix-v0.12.3-[Identificador do card no issue tracker]
-3. Dev: faz o commit da fix
+1. Dev: faz o checkout da versão de produção utilizando tag `git checkout v0.12.2`
+2. Dev: cria uma nova branch a partir da tag `git checkout -b hotfix-v0.12.3-[Identificador do card no issue tracker]`
+3. Dev: faz o commit da correção
 4. Dev: gera builds da hotfix conforme necessidade (ambiente de integração do dev)
-5. Dev: faz o push da branch para o remote: git push -u origin hotfix-v0.12.3-[Identificador do card no issue tracker]
+5. Dev: faz o push da branch para o remote: `git push -u origin hotfix-v0.12.3-[Identificador do card no issue tracker]`
 6. Dev: gera o build da branch de hotfix para o ambiente de homologação
-7. Dev: uma vez validado o hotfix, o dev gera uma tag baseado na hotfix, seguindo o padrão SEMVER, e faz o push para o Bitbucket git push --tags
-8. Dev: promove a tag para produção através do Jenkins
+7. Dev: uma vez validado o hotfix, o dev gera uma tag baseado na hotfix, seguindo o padrão SEMVER, e faz o push para o repositório `git push --tags`
+8. Dev: promove a tag para produção através da ferramenta de deploy
 9. Dev: uma vez o hotfix aplicado e validado em prod, faz o PR para a master e a partir daqui segue o mesmo fluxo de uma feature (continuando do passo 5)
 
 ## Definições de nomenclatura
